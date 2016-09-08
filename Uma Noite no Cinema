@@ -1,0 +1,55 @@
+movies = {
+    :"Life of Pi" => 5,
+    Noah: 3
+}
+
+puts "Escolha uma opção"
+puts "add - Para adicionar"
+puts "update - Para editar"
+puts "display - Para exibir"
+puts "delete - Para excluir"
+
+choice = gets.chomp.downcase!
+
+case choice
+when "add"
+    puts "Insira o nome do filme"
+    title = gets.chomp    
+    if movies[title.to_sym].nil?
+        puts "Insira uma nota"
+        rating = gets.chomp
+        movies = {title.to_sym => rating.to_i}        
+        puts "Filme #{title}, com nota #{rating}, adicionado com sucesso!"
+    else
+        puts "Filme já cadastrado"    
+    end
+   
+when "update"
+   puts "Insira o nome do filme"
+   title = gets.chomp
+   if movies[title.to_sym].nil?
+       puts "Filme não existe"
+   else
+       puts "Insira uma nota"
+       rating = gets.chomp
+       movies[title.to_sym] = rating.to_i 
+       puts movies
+   end
+when "display"    
+    movies.each do |m,r|
+        puts "#{m}: #{r}"
+    end
+when "delete"
+    puts "Insira o nome do filme"
+    title = gets.chomp
+    if movies[title.to_sym].nil?
+        puts "Filme não existe"
+    else
+        movies.delete(title.to_sym)
+        puts "Filme removido com sucesso"
+        puts movies
+    end
+    
+else
+    puts "Opção inválida!"
+end
